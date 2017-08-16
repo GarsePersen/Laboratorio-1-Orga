@@ -4,20 +4,25 @@
 #include <string>
 using namespace std;
 
+#include "Estado.hpp"
 
 enum class NombreInstruccion{
     Add,
-    Sub
+    Sub,
+    Addi,
+    Subi
 };
 
 class Instruccion{
-    private:
+    protected:
         NombreInstruccion nombre;
     public:
         Instruccion(NombreInstruccion nombre);
 
+	virtual void run(Estado &estado) = 0;
+
 	/*Retorna una reresentacion en string de la instruccion*/
-	string toString();
+	string toString() const;
 };
 
 #endif

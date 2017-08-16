@@ -1,20 +1,43 @@
 #include <iostream>
 #include <vector>
+#include <stdexcept>
 using namespace std;
+
+#include "Instruccion.hpp"
+#include "Estado.hpp"
+#include "TipoInmediato.hpp"
 
 int main(int argc, char **argv){
     cout << "Hola mundo" << endl;
 
-    vector<int> v;
+    //Instruccion inst(NombreInstruccion::Add);
+    //cout << inst.toString() << endl;
+    Estado estado;
 
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
-    v.push_back(4);
 
-    for(auto i: v){
-        cout << i << endl;
+    vector<Instruccion*> programa;
+
+    programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 0, 1));
+    programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 11, 2));
+
+
+
+
+    try{
+    bool end_program = false;
+    while(!end_program){
+        auto i = programa.at(estado.programCounter());
+	i->run(estado);
+        cout << estado.toString() << endl;
     }
+    }catch(logic_error e){
+	    cerr << "Error: " << e.what() << endl;
+	    return -1;
+    }
+
+
+    cout << estado.toString() << endl;
+	    cout << "Hola mundo" << endl;
 
     return 0;
 }
