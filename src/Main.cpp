@@ -6,6 +6,7 @@ using namespace std;
 #include "Instruccion.hpp"
 #include "Estado.hpp"
 #include "TipoInmediato.hpp"
+#include "parser/sintactico.tab.hh"
 
 int main(int argc, char **argv){
     cout << "Hola mundo" << endl;
