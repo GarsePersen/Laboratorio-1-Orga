@@ -7,14 +7,16 @@ using namespace std;
 #include "Estado.hpp"
 #include "TipoInmediato.hpp"
 #include "parser/sintactico.tab.h"
+#include "Archivo.hpp"
 
 extern void parse(const string &file);
 
 
 int main(int argc, char **argv){
 
-    parse("prueba.asm");
-    return 0;
+    //parse("prueba.asm");
+    //cout << "--fin--" << endl;
+    
 
 
     cout << "Hola mundo" << endl;
@@ -28,14 +30,15 @@ int main(int argc, char **argv){
 
     programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 0, 1));
     programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 11, 2));
+    programa.push_back(new TipoInmediato(NombreInstruccion::Subi, 11, 11, 4));
 
 
     try{
         bool end_program = false;
         while(!end_program){
+            cout << estado.toString() << endl;
             auto i = programa.at(estado.programCounter());
             i->run(estado);
-            cout << estado.toString() << endl;
         }
     }catch(logic_error e){
         cerr << "Error: " << e.what() << endl;

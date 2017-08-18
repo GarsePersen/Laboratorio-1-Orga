@@ -10,6 +10,7 @@ enum Lexema {
     MEOF,
     SALTO,
     PARENTESIS2,
+    END_OF_FILE,
     DOSPUNTOS
 };
 
@@ -50,6 +51,6 @@ salto \n
 {parentesis1} { return PARENTESIS1; }
 {parentesis2} { return PARENTESIS2; }
 {salto} { return SALTO; }
-
+<<EOF>> {return END_OF_FILE; }
 %%
 	

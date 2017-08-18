@@ -494,6 +494,7 @@ char *yytext_ptr;
 #line 1 "lexico.l"
 #line 2 "lexico.l"
 enum Lexema {
+    INSTRUCCION,
     NUMERO,
     LABEL,
     IDENTIFICADOR,
@@ -503,11 +504,12 @@ enum Lexema {
     MEOF,
     SALTO,
     PARENTESIS2,
+    END_OF_FILE,
     DOSPUNTOS
 };
 
-#line 509 "lex.yy.c"
-#line 510 "lex.yy.c"
+#line 511 "lex.yy.c"
+#line 512 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -724,10 +726,10 @@ YY_DECL
 		}
 
 	{
-#line 41 "lexico.l"
+#line 43 "lexico.l"
 
 
-#line 730 "lex.yy.c"
+#line 732 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -796,58 +798,60 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 43 "lexico.l"
+#line 45 "lexico.l"
 { return INSTRUCCION; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 44 "lexico.l"
+#line 46 "lexico.l"
 { return NUMERO; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 45 "lexico.l"
+#line 47 "lexico.l"
 { return IDENTIFICADOR; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 46 "lexico.l"
+#line 48 "lexico.l"
 { return REGISTROS; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 47 "lexico.l"
+#line 49 "lexico.l"
 { return DOSPUNTOS; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 48 "lexico.l"
+#line 50 "lexico.l"
 { return COMA; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 49 "lexico.l"
+#line 51 "lexico.l"
 { return PARENTESIS1; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 50 "lexico.l"
+#line 52 "lexico.l"
 { return PARENTESIS2; }
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 51 "lexico.l"
+#line 53 "lexico.l"
 { return SALTO; }
+	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 54 "lexico.l"
+{return END_OF_FILE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 53 "lexico.l"
+#line 55 "lexico.l"
 ECHO;
 	YY_BREAK
-#line 848 "lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-	yyterminate();
+#line 854 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1862,7 +1866,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 53 "lexico.l"
+#line 55 "lexico.l"
 
 	
 

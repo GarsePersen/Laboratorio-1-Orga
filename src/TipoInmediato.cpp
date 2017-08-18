@@ -13,7 +13,8 @@ void TipoInmediato::run(Estado &estado){
     
     switch(this->nombre){
         case NombreInstruccion::Addi:
-            result = valorR2 + this->valor;
+            /*Camino de datos del addi */
+	    result = valorR2 + this->valor;
 	    break;
         case NombreInstruccion::Subi:
             result = valorR2 - this->valor;

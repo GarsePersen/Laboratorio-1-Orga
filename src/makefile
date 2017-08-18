@@ -1,6 +1,6 @@
-all: TipoInmediato.o Estado.o Instruccion.o Main.cpp 
+all: Archivo.o TipoInmediato.o Estado.o Instruccion.o Main.cpp 
 	make -C parser
-	g++ -Wall -std=c++11 Main.cpp parser/lexer.o parser/parser.o Instruccion.o Estado.o TipoInmediato.o -o lab1
+	g++ -Wall -std=c++11 Main.cpp parser/lexer.o parser/parser.o Instruccion.o Estado.o TipoInmediato.o Archivo.o -o lab1
 
 Instruccion.o: Instruccion.cpp Instruccion.hpp
 	g++ -Wall -c -std=c++11 Instruccion.cpp -o Instruccion.o
@@ -11,3 +11,7 @@ Estado.o: Estado.cpp Estado.hpp
 
 TipoInmediato.o: TipoInmediato.cpp TipoInmediato.hpp
 	g++ -Wall -c -std=c++11 TipoInmediato.cpp -o TipoInmediato.o
+
+Archivo.o: Archivo.cpp Archivo.hpp
+	g++ -Wall -c -std=c++11 Archivo.cpp -o Archivo.o
+

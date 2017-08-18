@@ -32,7 +32,7 @@
 
 
 
-mips: | mips linea;
+mips: mips linea {cout << "1" << endl;} | linea {cout << "3" << endl;};
 
 linea: INSTRUCCION;
     

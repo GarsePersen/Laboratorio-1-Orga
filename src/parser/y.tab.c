@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "sintactico.y" /* yacc.c:339  */
+
 
     #include <iostream>
     #include <string>
@@ -80,7 +80,7 @@
     
     void parse(const string &file);
 
-#line 84 "sintactico.tab.c" /* yacc.c:339  */
+
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -99,9 +99,9 @@
 #endif
 
 /* In a future release of Bison, this section will be replaced
-   by #include "sintactico.tab.h".  */
-#ifndef YY_YY_SINTACTICO_TAB_H_INCLUDED
-# define YY_YY_SINTACTICO_TAB_H_INCLUDED
+   by #include "y.tab.h".  */
+#ifndef YY_YY_Y_TAB_H_INCLUDED
+# define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -128,6 +128,18 @@ extern int yydebug;
     END = 268
   };
 #endif
+/* Tokens.  */
+#define INSTRUCCION 258
+#define NUMERO 259
+#define LABEL 260
+#define IDENTIFICADOR 261
+#define REGISTROS 262
+#define COMA 263
+#define PARENTESIS1 264
+#define PARENTESIS2 265
+#define SALTO 266
+#define DOSPUNTOS 267
+#define END 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -141,11 +153,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_SINTACTICO_TAB_H_INCLUDED  */
+#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 149 "sintactico.tab.c" /* yacc.c:358  */
+
 
 #ifdef short
 # undef short
@@ -385,9 +397,9 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  4
+#define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   4
+#define YYLAST   3
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  14
@@ -468,10 +480,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -3
+#define YYPACT_NINF -13
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-3)))
+  (!!((Yystate) == (-13)))
 
 #define YYTABLE_NINF -1
 
@@ -482,7 +494,7 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,    -3,     0,    -3,    -3,    -3
+     -12,   -13,     0,   -13,   -13,   -13
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -490,19 +502,19 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     4,     0,     3,     1,     2
+       0,     2,     0,     1,     4,     3
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -3,    -3,     2
+     -13,   -13,   -13
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3
+      -1,     2,     5
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -510,19 +522,19 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       4,     1,     0,     1,     5
+       3,     1,     0,     4
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,     3,    -1,     3,     2
+       0,    13,    -1,     3
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,    15,    16,     0,    16
+       0,    13,    15,     0,     3,    16
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -534,7 +546,7 @@ static const yytype_uint8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     1,     1
+       0,     2,     1,     2,     1
 };
 
 
@@ -1210,20 +1222,8 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 2:
-#line 35 "sintactico.y" /* yacc.c:1646  */
-    {cout << "1" << endl;}
-#line 1217 "sintactico.tab.c" /* yacc.c:1646  */
-    break;
+      
 
-  case 3:
-#line 35 "sintactico.y" /* yacc.c:1646  */
-    {cout << "3" << endl;}
-#line 1223 "sintactico.tab.c" /* yacc.c:1646  */
-    break;
-
-
-#line 1227 "sintactico.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1451,7 +1451,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 41 "sintactico.y" /* yacc.c:1906  */
+
       
 
 void parse(const string &file){
