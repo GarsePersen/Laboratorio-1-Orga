@@ -38,12 +38,12 @@
     #include <string>
     #include <cstdlib>
     #include <cstdio>
-    
+    #include "lexico.h" 
     using namespace std;
 
-    extern "C" int yyparse (void);
-    int yylex(int*);
-    void yyerror(const char *);
+    //extern "C" int yyparse (void);
+    //int yylex(int*);
+    //void yyerror(const char *);
 
 #line 49 "sintactico.tab.cc" // lalr1.cc:404
 
@@ -479,7 +479,7 @@ namespace yy {
         YYCDEBUG << "Reading a token: ";
         try
           {
-            yyla.type = yytranslate_ (yylex (&yyla.value));
+            yyla.type = yytranslate_ (yyFlexLexer::yylex (&yyla.value));
           }
         catch (const syntax_error& yyexc)
           {
@@ -877,7 +877,8 @@ namespace yy {
       
 
 void parse(const string &file){
-    extern FILE *yyin;
-    yyin=fopen(file.c_str(), "r");
-    yyparse();
+    //extern FILE *yyin;
+    //yyin=fopen(file.c_str(), "r");
+    //yyparse();
+    yy::parser myParser;
 }

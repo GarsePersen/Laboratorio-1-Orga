@@ -1,4 +1,5 @@
 all: TipoInmediato.o Estado.o Instruccion.o Main.cpp 
+	make -C parser
 	g++ -Wall -std=c++11 Main.cpp parser/lexer.o parser/parser.o Instruccion.o Estado.o TipoInmediato.o -o lab1
 
 Instruccion.o: Instruccion.cpp Instruccion.hpp
