@@ -38,7 +38,7 @@
     #include <string>
     #include <cstdlib>
     #include <cstdio>
-    #include "lexico.h" 
+    #include "lexico.h"
     using namespace std;
 
     //extern "C" int yyparse (void);

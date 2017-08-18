@@ -3,12 +3,17 @@
     #include <string>
     #include <cstdlib>
     #include <cstdio>
-    #include "lexico.h" 
+    #include "lexico.h"
+    #include "sintactico.tab.h" 
     using namespace std;
 
-    //extern "C" int yyparse (void);
-    //int yylex(int*);
-    //void yyerror(const char *);
+    extern int yyparse (void);
+    
+    int yylex(int*);
+    void yyerror(char *s);
+
+    
+    void parse(const string &file);
 %}
 
 %token INSTRUCCION
@@ -29,7 +34,7 @@ mips:
     |
     ;
     
-linea: LABEL { cout << $1 << endl; }
+linea: LABEL 
     ;
     
     
@@ -37,8 +42,14 @@ linea: LABEL { cout << $1 << endl; }
 %%      
 
 void parse(const string &file){
-    //extern FILE *yyin;
-    //yyin=fopen(file.c_str(), "r");
-    //yyparse();
-    yy::parser myParser;
+    extern FILE *yyin;
+    yyin=fopen(file.c_str(), "r");
+    yyparse();
+    fclose(yyin);
+}
+
+
+void yyerror(char *s) {
+	printf("%s%i%s","Error sintactico en la linea: ", yylineno,".");
+	exit(1);
 }
