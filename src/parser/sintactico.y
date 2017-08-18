@@ -24,18 +24,17 @@
 %token COMA
 %token PARENTESIS1
 %token PARENTESIS2
-%token MEOF
+%token SALTO
+%token DOSPUNTOS
+%token END
 
 %%
 
 
-mips:
-    linea mips
-    |
-    ;
-    
-linea: LABEL 
-    ;
+
+mips: | mips linea;
+
+linea: INSTRUCCION;
     
     
  

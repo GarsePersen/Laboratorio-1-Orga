@@ -8,40 +8,48 @@ enum Lexema {
     COMA,
     PARENTESIS1,
     MEOF,
-    PARENTESIS2
+    SALTO,
+    PARENTESIS2,
+    DOSPUNTOS
 };
 
 %}
 
 
 %option noyywrap
+%option yylineno
 
-instruccion [a-zA-Z]+
+
+instruccion [a-zA-Z]
 
 numero (0x|0X)[0-9a-fA-F]+|[0-9]+|0[0-9]+
-
-label [a-zA-Z]+[a-zA-Z0-9_]*:
 
 identificador [a-zA-Z]+[a-zA-Z0-9_]* 
 
 registros $[a-z][0-9a-z]|$zero
 
+dospuntos :
+
 coma ,
 
-parentesis1 (
+parentesis1 \(
 
-parentesis2 )
+parentesis2 \)
+
+salto \n
+
 
 %%
 
-instruccion { return INSTRUCCION; }
-numero { return NUMERO; }
-label { return LABEL; }
-identificador { return IDENTIFICADOR; }
-registros { return REGISTROS; }
-coma { return COMA; }
-parentesis1 { return PARENTESIS1; }
-parentesis2 { return PARENTESIS2; }
-eof { return MEOF; }
+{instruccion} { return INSTRUCCION; }
+{numero} { return NUMERO; }
+{identificador} { return IDENTIFICADOR; }
+{registros} { return REGISTROS; }
+{dospuntos} { return DOSPUNTOS; }
+{coma} { return COMA; }
+{parentesis1} { return PARENTESIS1; }
+{parentesis2} { return PARENTESIS2; }
+{salto} { return SALTO; }
+
 %%
 	

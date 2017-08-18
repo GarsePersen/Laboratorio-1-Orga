@@ -53,7 +53,9 @@ extern int yydebug;
     COMA = 263,
     PARENTESIS1 = 264,
     PARENTESIS2 = 265,
-    MEOF = 266
+    SALTO = 266,
+    DOSPUNTOS = 267,
+    END = 268
   };
 #endif
 
