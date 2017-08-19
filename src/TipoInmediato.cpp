@@ -22,13 +22,13 @@ void TipoInmediato::run(Estado &estado){
     switch(this->nombre){
         case NombreInstruccion::Addi:
             /*Camino de datos del addi */
-	    result = valorR2 + this->valor;
-	    break;
+            result = valorR2 + this->valor;
+            break;
         case NombreInstruccion::Subi:
             result = valorR2 - this->valor;
-	    break;
+            break;
         default:
-           throw logic_error("La instruccion no corresponde a un TipoInmediato");
+            throw logic_error("La instruccion no corresponde a un TipoInmediato");
     }
 
     estado.programCounter(estado.programCounter() + 1);

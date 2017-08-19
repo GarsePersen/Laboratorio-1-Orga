@@ -10,7 +10,9 @@ enum class NombreInstruccion{
     Add,
     Sub,
     Addi,
-    Subi
+    Subi,
+    J,
+    Label
 };
 
 class Instruccion{

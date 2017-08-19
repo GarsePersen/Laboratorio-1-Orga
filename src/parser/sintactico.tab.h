@@ -47,7 +47,8 @@ extern int yydebug;
   {
     IDENTIFICADOR = 258,
     NUMERO = 259,
-    REGISTRO = 260
+    REGISTRO = 260,
+    LABEL = 261
   };
 #endif
 

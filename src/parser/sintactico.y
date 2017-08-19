@@ -7,19 +7,23 @@
     #include "lexico.h"
     #include "../TipoInmediato.hpp"
     #include "../Instruccion.hpp"
+    #include "../Label.hpp"
+    #include "../JFalso.hpp"
     using namespace std;
 	void yyerror(char *s);
 	extern int yylineno;
     vector<string> readed;
     vector<Instruccion*> instrucciones;
     void crearTipoInmediato();
-
+    void crearLabel();
+    void crearJ();
     vector<Instruccion*> getInstrucciones();
      
 %}
 %token IDENTIFICADOR
 %token NUMERO
 %token REGISTRO
+%token LABEL
 %%
 
 mips: linea mips 
@@ -27,6 +31,8 @@ mips: linea mips
     ;
 
 linea: IDENTIFICADOR REGISTRO ',' REGISTRO ',' NUMERO { crearTipoInmediato(); }
+    | LABEL { crearLabel(); } 
+    | IDENTIFICADOR IDENTIFICADOR { crearJ(); }
     ;
 
 %%
@@ -52,7 +58,17 @@ void crearTipoInmediato(){
     readed.clear();
 }
 
+void crearLabel(){
+    Instruccion *inst = new Label(readed.at(0));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
 
+void crearJ(){
+    Instruccion *inst = new JFalso(readed.at(0));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
 
 vector<Instruccion*> getInstrucciones(){
     return instrucciones;
