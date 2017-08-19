@@ -1,56 +1,47 @@
-%{
-enum Lexema {
-    INSTRUCCION,
-    NUMERO,
-    LABEL,
-    IDENTIFICADOR,
-    REGISTROS,
-    COMA,
-    PARENTESIS1,
-    MEOF,
-    SALTO,
-    PARENTESIS2,
-    END_OF_FILE,
-    DOSPUNTOS
-};
-
-%}
-
-
 %option noyywrap
 %option yylineno
+%{
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+#include "sintactico.tab.h"
+extern vector<string> readed;
+%}
 
-
-instruccion [a-zA-Z]
-
+identificador [a-zA-Z]+ 
+registro $[a-zA-Z][a-zA-Z1-9]
 numero (0x|0X)[0-9a-fA-F]+|[0-9]+|0[0-9]+
 
-identificador [a-zA-Z]+[a-zA-Z0-9_]* 
-
-registros $[a-z][0-9a-z]|$zero
-
-dospuntos :
-
-coma ,
-
-parentesis1 \(
-
-parentesis2 \)
-
-salto \n
-
-
+%%
+\{	{return '{';}
+\} {return '}';}
+\( {return '(';}
+\)	{return ')';}
+\-	{return '-';}
+\:	{return ':';}
+\;	{return ';';}
+\,	{return ',';}
+\|	{return '|';}
+\&	{return '&';}
+\<	{return '<';}
+\>	{return '>';}
+\!	{return '!';}
+\=	{return '=';}
+\+	{return '+';}
+\[	{return '[';}
+\]	{return ']';}
+\*	{return '*';}
+\/	{return '/';}
+\%	{return '%';}
+" "	{;}
+"\n" {;}
+"\t"	{;}
+"\r"	{;}
+"\f"	{;}
+{identificador} { readed.push_back(string(yytext)); return IDENTIFICADOR; }
+{registro} { readed.push_back(string(yytext)); return REGISTRO; }
+{numero} { readed.push_back(string(yytext)); return NUMERO; }
 %%
 
-{instruccion} { return INSTRUCCION; }
-{numero} { return NUMERO; }
-{identificador} { return IDENTIFICADOR; }
-{registros} { return REGISTROS; }
-{dospuntos} { return DOSPUNTOS; }
-{coma} { return COMA; }
-{parentesis1} { return PARENTESIS1; }
-{parentesis2} { return PARENTESIS2; }
-{salto} { return SALTO; }
-<<EOF>> {return END_OF_FILE; }
-%%
-	
+

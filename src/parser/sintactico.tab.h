@@ -45,17 +45,9 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    INSTRUCCION = 258,
+    IDENTIFICADOR = 258,
     NUMERO = 259,
-    LABEL = 260,
-    IDENTIFICADOR = 261,
-    REGISTROS = 262,
-    COMA = 263,
-    PARENTESIS1 = 264,
-    PARENTESIS2 = 265,
-    SALTO = 266,
-    DOSPUNTOS = 267,
-    END = 268
+    REGISTRO = 260
   };
 #endif
 

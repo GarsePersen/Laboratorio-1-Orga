@@ -16,13 +16,17 @@ enum class NombreInstruccion{
 class Instruccion{
     protected:
         NombreInstruccion nombre;
+
+        size_t storeg(string str);
+
     public:
         Instruccion(NombreInstruccion nombre);
+        Instruccion(string nombre);
 
-	virtual void run(Estado &estado) = 0;
+        virtual void run(Estado &estado) = 0;
 
-	/*Retorna una reresentacion en string de la instruccion*/
-	string toString() const;
+        /*Retorna una reresentacion en string de la instruccion*/
+        string toString() const;
 };
 
 #endif

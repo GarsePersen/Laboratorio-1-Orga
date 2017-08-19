@@ -1,44 +1,36 @@
 %{
-    #include <iostream>
-    #include <string>
-    #include <cstdlib>
+	#include "sintactico.tab.h"
+	#include <string>
     #include <cstdio>
+    #include <iostream>
+    #include <vector>
     #include "lexico.h"
-    #include "sintactico.tab.h" 
+    #include "../TipoInmediato.hpp"
+    #include "../Instruccion.hpp"
     using namespace std;
+	void yyerror(char *s);
+	extern int yylineno;
+    vector<string> readed;
+    vector<Instruccion*> instrucciones;
+    void crearTipoInmediato();
 
-    extern int yyparse (void);
-    
-    int yylex(int*);
-    void yyerror(char *s);
-
-    
-    void parse(const string &file);
+    vector<Instruccion*> getInstrucciones();
+     
 %}
-
-%token INSTRUCCION
-%token NUMERO
-%token LABEL
 %token IDENTIFICADOR
-%token REGISTROS
-%token COMA
-%token PARENTESIS1
-%token PARENTESIS2
-%token SALTO
-%token DOSPUNTOS
-%token END
+%token NUMERO
+%token REGISTRO
+%%
+
+mips: linea mips 
+    |
+    ;
+
+linea: IDENTIFICADOR REGISTRO ',' REGISTRO ',' NUMERO { crearTipoInmediato(); }
+    ;
 
 %%
 
-
-
-mips: mips linea {cout << "1" << endl;} | linea {cout << "3" << endl;};
-
-linea: INSTRUCCION;
-    
-    
- 
-%%      
 
 void parse(const string &file){
     extern FILE *yyin;
@@ -51,4 +43,17 @@ void parse(const string &file){
 void yyerror(char *s) {
 	printf("%s%i%s","Error sintactico en la linea: ", yylineno,".");
 	exit(1);
+}
+
+
+void crearTipoInmediato(){
+    Instruccion *inst = new TipoInmediato(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
+
+
+vector<Instruccion*> getInstrucciones(){
+    return instrucciones;
 }

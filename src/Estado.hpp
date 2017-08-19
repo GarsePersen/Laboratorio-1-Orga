@@ -12,9 +12,9 @@ class Estado{
         void verificarRegistro(size_t numero) const;
     public:
         Estado();
-	int programCounter();
-	void programCounter(int valor);
-	void modificarRegistro(size_t numero, int valor);
+	    int programCounter();
+	    void programCounter(int valor);
+	    void modificarRegistro(size_t numero, int valor);
         int obtenerValor(size_t numero) const;
         string toString() const;
 };

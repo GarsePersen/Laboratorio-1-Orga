@@ -1,11 +1,13 @@
 #include <sstream>
 #include <string>
+#include <iostream> 
 
-#include "archivo.hpp"
+#include "Archivo.hpp"
 
 using namespace std;
 
 Archivo::Archivo(string nombre){
     this->nombre=nombre;
+    cout << nombre << endl;
 }
 

@@ -5,11 +5,13 @@
 
 using namespace std;
 
-class Arhcivo{
+class Archivo{
+    private:
+        string nombre; 
     public:
-        Arhcivo();
-	void leerArchivo(string nombreArchivo);
-	void escribirArchivo();
+        Archivo(string nombre);
+	    void leerArchivo();
+	    void escribirArchivo();
 };
 
 #endif

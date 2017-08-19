@@ -64,23 +64,25 @@
 /* Copy the first part of user declarations.  */
 #line 1 "sintactico.y" /* yacc.c:339  */
 
-    #include <iostream>
-    #include <string>
-    #include <cstdlib>
+	#include "sintactico.tab.h"
+	#include <string>
     #include <cstdio>
+    #include <iostream>
+    #include <vector>
     #include "lexico.h"
-    #include "sintactico.tab.h" 
+    #include "../TipoInmediato.hpp"
+    #include "../Instruccion.hpp"
     using namespace std;
+	void yyerror(char *s);
+	extern int yylineno;
+    vector<string> readed;
+    vector<Instruccion*> instrucciones;
+    void crearTipoInmediato();
 
-    extern int yyparse (void);
-    
-    int yylex(int*);
-    void yyerror(char *s);
+    vector<Instruccion*> getInstrucciones();
+     
 
-    
-    void parse(const string &file);
-
-#line 84 "sintactico.tab.c" /* yacc.c:339  */
+#line 86 "sintactico.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -115,17 +117,9 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    INSTRUCCION = 258,
+    IDENTIFICADOR = 258,
     NUMERO = 259,
-    LABEL = 260,
-    IDENTIFICADOR = 261,
-    REGISTROS = 262,
-    COMA = 263,
-    PARENTESIS1 = 264,
-    PARENTESIS2 = 265,
-    SALTO = 266,
-    DOSPUNTOS = 267,
-    END = 268
+    REGISTRO = 260
   };
 #endif
 
@@ -145,7 +139,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 149 "sintactico.tab.c" /* yacc.c:358  */
+#line 143 "sintactico.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -385,23 +379,23 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  4
+#define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   4
+#define YYLAST   7
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  14
+#define YYNTOKENS  7
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  3
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  4
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  6
+#define YYNSTATES  11
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   268
+#define YYMAXUTOK   260
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -414,7 +408,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     6,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -436,14 +430,14 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    13
+       5
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    35,    35,    35,    37
+       0,    25,    25,    26,    29
 };
 #endif
 
@@ -452,9 +446,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "INSTRUCCION", "NUMERO", "LABEL",
-  "IDENTIFICADOR", "REGISTROS", "COMA", "PARENTESIS1", "PARENTESIS2",
-  "SALTO", "DOSPUNTOS", "END", "$accept", "mips", "linea", YY_NULLPTR
+  "$end", "error", "$undefined", "IDENTIFICADOR", "NUMERO", "REGISTRO",
+  "','", "$accept", "mips", "linea", YY_NULLPTR
 };
 #endif
 
@@ -463,15 +456,14 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268
+       0,   256,   257,   258,   259,   260,    44
 };
 # endif
 
-#define YYPACT_NINF -3
+#define YYPACT_NINF -5
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-3)))
+  (!!((Yystate) == (-5)))
 
 #define YYTABLE_NINF -1
 
@@ -482,7 +474,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,    -3,     0,    -3,    -3,    -3
+      -3,    -4,     2,    -3,    -2,    -5,    -5,     0,     1,    -1,
+      -5
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -490,13 +483,14 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     4,     0,     3,     1,     2
+       3,     0,     0,     3,     0,     1,     2,     0,     0,     0,
+       4
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -3,    -3,     2
+      -5,     3,    -5
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -510,31 +504,32 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       4,     1,     0,     1,     5
+       1,     4,     5,    10,     7,     8,     6,     9
 };
 
-static const yytype_int8 yycheck[] =
+static const yytype_uint8 yycheck[] =
 {
-       0,     3,    -1,     3,     2
+       3,     5,     0,     4,     6,     5,     3,     6
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,    15,    16,     0,    16
+       0,     3,     8,     9,     5,     0,     8,     6,     5,     6,
+       4
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    14,    15,    15,    16
+       0,     7,     8,     8,     9
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     1,     1
+       0,     2,     2,     0,     6
 };
 
 
@@ -1210,20 +1205,14 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 2:
-#line 35 "sintactico.y" /* yacc.c:1646  */
-    {cout << "1" << endl;}
-#line 1217 "sintactico.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 3:
-#line 35 "sintactico.y" /* yacc.c:1646  */
-    {cout << "3" << endl;}
-#line 1223 "sintactico.tab.c" /* yacc.c:1646  */
+        case 4:
+#line 29 "sintactico.y" /* yacc.c:1646  */
+    { crearTipoInmediato(); }
+#line 1212 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1227 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1216 "sintactico.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1451,8 +1440,9 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 41 "sintactico.y" /* yacc.c:1906  */
-      
+#line 32 "sintactico.y" /* yacc.c:1906  */
+
+
 
 void parse(const string &file){
     extern FILE *yyin;
@@ -1465,4 +1455,17 @@ void parse(const string &file){
 void yyerror(char *s) {
 	printf("%s%i%s","Error sintactico en la linea: ", yylineno,".");
 	exit(1);
+}
+
+
+void crearTipoInmediato(){
+    Instruccion *inst = new TipoInmediato(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
+
+
+vector<Instruccion*> getInstrucciones(){
+    return instrucciones;
 }

@@ -10,11 +10,27 @@ using namespace std;
 #include "Archivo.hpp"
 
 extern void parse(const string &file);
-
+extern vector<Instruccion*> getInstrucciones();
 
 int main(int argc, char **argv){
 
-    //parse("prueba.asm");
+    try{
+        parse("prueba.asm");
+    }catch(logic_error error){
+        cout << error.what() << endl;
+    }catch(...){
+        cout << "Error" << endl;
+    }
+
+    vector<Instruccion*> programa = getInstrucciones();
+
+    cout << programa.size() << endl;
+        
+    for(auto i: programa){
+        cout << i->toString() << endl;
+    }
+    return 0;
+
     //cout << "--fin--" << endl;
     
 
@@ -23,20 +39,26 @@ int main(int argc, char **argv){
 
     //Instruccion inst(NombreInstruccion::Add);
     //cout << inst.toString() << endl;
+    
+    /* Lectura de archivo */
+
+    /*switch(argc){
+        case 2: {   
+            Archivo archivo(argv[1]);
+            break;
+        }
+        default:
+            cout << "faltan argumentos" << endl;
+            return -1;
+    }*/
+    
+    
     Estado estado;
-
-
-    vector<Instruccion*> programa;
-
-    programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 0, 1));
-    programa.push_back(new TipoInmediato(NombreInstruccion::Addi, 11, 11, 2));
-    programa.push_back(new TipoInmediato(NombreInstruccion::Subi, 11, 11, 4));
-
 
     try{
         bool end_program = false;
         while(!end_program){
-            cout << estado.toString() << endl;
+            //cout << estado.toString() << endl;
             auto i = programa.at(estado.programCounter());
             i->run(estado);
         }
