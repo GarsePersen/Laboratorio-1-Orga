@@ -1,4 +1,7 @@
-J::J(size_t pos){
+#include "J.hpp"
+#include "Instruccion.hpp"
+
+J::J(size_t pos): Instruccion(NombreInstruccion::J){
     this->pos = pos;
 }
 

@@ -1,5 +1,5 @@
-#ifndef _H_JFALSO
-#define _H_JFALSO
+#ifndef _H_J_
+#define _H_J_
 
 #include <string>
 using namespace std;

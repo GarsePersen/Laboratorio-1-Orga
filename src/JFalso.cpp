@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "JFalso.hpp"
+#include "J.hpp"
 
 JFalso::JFalso(string nombreLabel): InstruccionFalsa(NombreInstruccion::J){
     this->nombreLabel = nombreLabel;
@@ -13,7 +14,7 @@ void JFalso::run(Estado &estado){
 }
 
 Instruccion *JFalso::getReal(size_t pos){
-   return nullptr;
+   return new J(pos);
 }
 
 
