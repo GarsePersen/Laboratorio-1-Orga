@@ -10,6 +10,11 @@ Label::Label(string nombre): Instruccion(NombreInstruccion::Label){
 
 void Label::run(Estado &estado){
     throw logic_error("Error, label no se puede ejecutar");
+
+}
+
+string Label::getLabel() const{
+    return this->nombre;
 }
 
 

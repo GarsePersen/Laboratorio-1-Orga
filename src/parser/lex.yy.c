@@ -516,9 +516,8 @@ extern vector<string> readed;
 //#define DEBUG true
 void debug(const char *);
 
-
+#line 519 "lex.yy.c"
 #line 520 "lex.yy.c"
-#line 521 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -735,9 +734,9 @@ YY_DECL
 		}
 
 	{
-#line 22 "lexico.l"
+#line 21 "lexico.l"
 
-#line 740 "lex.yy.c"
+#line 739 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -806,156 +805,156 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 23 "lexico.l"
+#line 22 "lexico.l"
 {return '{';}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "lexico.l"
+#line 23 "lexico.l"
 {return '}';}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "lexico.l"
+#line 24 "lexico.l"
 {return '(';}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 26 "lexico.l"
+#line 25 "lexico.l"
 {return ')';}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 27 "lexico.l"
+#line 26 "lexico.l"
 {return '-';}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 28 "lexico.l"
+#line 27 "lexico.l"
 {return ':';}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 29 "lexico.l"
+#line 28 "lexico.l"
 {return ';';}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 30 "lexico.l"
+#line 29 "lexico.l"
 {return ',';}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 31 "lexico.l"
+#line 30 "lexico.l"
 {return '|';}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 32 "lexico.l"
+#line 31 "lexico.l"
 {return '&';}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 33 "lexico.l"
+#line 32 "lexico.l"
 {return '<';}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "lexico.l"
+#line 33 "lexico.l"
 {return '>';}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "lexico.l"
+#line 34 "lexico.l"
 {return '!';}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "lexico.l"
+#line 35 "lexico.l"
 {return '=';}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "lexico.l"
+#line 36 "lexico.l"
 {return '+';}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 38 "lexico.l"
+#line 37 "lexico.l"
 {return '[';}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 39 "lexico.l"
+#line 38 "lexico.l"
 {return ']';}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 40 "lexico.l"
+#line 39 "lexico.l"
 {return '*';}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 41 "lexico.l"
+#line 40 "lexico.l"
 {return '/';}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 42 "lexico.l"
+#line 41 "lexico.l"
 {return '%';}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 43 "lexico.l"
+#line 42 "lexico.l"
 {;}
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 44 "lexico.l"
+#line 43 "lexico.l"
 {;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 45 "lexico.l"
+#line 44 "lexico.l"
 {;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 46 "lexico.l"
+#line 45 "lexico.l"
 {;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 47 "lexico.l"
+#line 46 "lexico.l"
 {;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 48 "lexico.l"
+#line 47 "lexico.l"
 {debug("IDENTIFICADOR"); readed.push_back(string(yytext)); return IDENTIFICADOR; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 49 "lexico.l"
+#line 48 "lexico.l"
 {debug("REGISTRO"); readed.push_back(string(yytext)); return REGISTRO; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 50 "lexico.l"
+#line 49 "lexico.l"
 {debug("NUMERO"); readed.push_back(string(yytext)); return NUMERO; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 51 "lexico.l"
+#line 50 "lexico.l"
 {debug("LABEL"); readed.push_back(string(yytext)); return LABEL; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 53 "lexico.l"
+#line 52 "lexico.l"
 ECHO;
 	YY_BREAK
-#line 958 "lex.yy.c"
+#line 957 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1972,7 +1971,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 53 "lexico.l"
+#line 52 "lexico.l"
 
 
 void debug(const char *lugar){

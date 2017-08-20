@@ -1,8 +1,8 @@
 FLAGS=-Wall -g -std=c++11
 
-all: JFalso.o Label.o TipoInmediato.o Estado.o Instruccion.o Main.cpp 
+all: InstruccionFalsa.o JFalso.o Label.o TipoInmediato.o Estado.o Instruccion.o Main.cpp 
 	make -C parser
-	g++ $(FLAGS) Main.cpp parser/lexer.o parser/parser.o Instruccion.o Estado.o TipoInmediato.o Label.o JFalso.o -o lab1
+	g++ $(FLAGS) Main.cpp parser/lexer.o parser/parser.o Instruccion.o Estado.o TipoInmediato.o Label.o JFalso.o InstruccionFalsa.o -o lab1
 
 Instruccion.o: Instruccion.cpp Instruccion.hpp
 	g++ $(FLAGS) -c Instruccion.cpp -o Instruccion.o
@@ -19,6 +19,9 @@ Label.o: Label.cpp Label.hpp
 
 JFalso.o: JFalso.cpp JFalso.hpp
 	g++ $(FLAGS) -c JFalso.cpp -o JFalso.o
+
+InstruccionFalsa.o: InstruccionFalsa.cpp InstruccionFalsa.hpp
+	g++ $(FLAGS) -c InstruccionFalsa.cpp -o InstruccionFalsa.o
 
 clear:
 	rm *.o  

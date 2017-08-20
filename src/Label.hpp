@@ -11,6 +11,7 @@ class Label: public Instruccion{
     public:
         Label(string nombre);
         void run(Estado &estado);
+        string getLabel() const;
 };
 
 #endif 

@@ -11,7 +11,6 @@ extern vector<string> readed;
 //#define DEBUG true
 void debug(const char *);
 
-
 %}
 
 label [a-zA-Z][a-zA-Z1-9]*:

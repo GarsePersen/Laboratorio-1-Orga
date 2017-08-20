@@ -20,7 +20,11 @@
     vector<Instruccion*> getInstrucciones();
      
 %}
+
+
+
 %token IDENTIFICADOR
+
 %token NUMERO
 %token REGISTRO
 %token LABEL
@@ -59,13 +63,16 @@ void crearTipoInmediato(){
 }
 
 void crearLabel(){
+    string::iterator end = readed.at(0).end();
+    end--;
+    readed.at(0).erase(end);
     Instruccion *inst = new Label(readed.at(0));
     instrucciones.push_back(inst);
     readed.clear();
 }
 
 void crearJ(){
-    Instruccion *inst = new JFalso(readed.at(0));
+    Instruccion *inst = new JFalso(readed.at(1));
     instrucciones.push_back(inst);
     readed.clear();
 }

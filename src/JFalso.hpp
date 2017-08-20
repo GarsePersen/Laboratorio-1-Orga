@@ -3,14 +3,16 @@
 
 #include <string>
 using namespace std;
-#include "Instruccion.hpp" 
+#include "InstruccionFalsa.hpp" 
 
-class JFalso: public Instruccion{
+class JFalso: public InstruccionFalsa{
     private:
-       string nombreLabel;
+        string nombreLabel;
     public:
         JFalso(string nombreLabel);
         void run(Estado &estado);
+        Instruccion *getReal(size_t pos);
+        string getLabel();
 };
 
 #endif 

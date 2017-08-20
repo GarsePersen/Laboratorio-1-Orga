@@ -7,28 +7,35 @@ using namespace std;
 #include "Estado.hpp"
 #include "TipoInmediato.hpp"
 #include "parser/sintactico.tab.h"
-#include "Archivo.hpp"
 
 extern void parse(const string &file);
 extern vector<Instruccion*> getInstrucciones();
+void transformarLabels(vector<Instruccion*> &instrucciones);
+int mymain();
 
 int main(int argc, char **argv){
-
     try{
-        parse("prueba.asm");
+        return mymain();
     }catch(logic_error error){
-        cout << error.what() << endl;
+        cerr << error.what() << endl;
     }catch(...){
-        cout << "Error" << endl;
+        cerr << "Error" << endl;
     }
+}
+
+int mymain(){
+    parse("prueba.asm");
 
     vector<Instruccion*> programa = getInstrucciones();
 
     cout << programa.size() << endl;
-        
+       
+    transformarLabels(programa); 
+     
     for(auto i: programa){
         cout << i->toString() << endl;
     }
+
     return 0;
 
     //cout << "--fin--" << endl;
@@ -73,3 +80,6 @@ int main(int argc, char **argv){
 
     return 0;
 }
+
+
+

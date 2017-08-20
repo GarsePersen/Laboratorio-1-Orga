@@ -441,7 +441,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    29,    29,    30,    33,    34,    35
+       0,    33,    33,    34,    37,    38,    39
 };
 #endif
 
@@ -1212,19 +1212,19 @@ yyreduce:
   switch (yyn)
     {
         case 4:
-#line 33 "sintactico.y" /* yacc.c:1646  */
+#line 37 "sintactico.y" /* yacc.c:1646  */
     { crearTipoInmediato(); }
 #line 1218 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 34 "sintactico.y" /* yacc.c:1646  */
+#line 38 "sintactico.y" /* yacc.c:1646  */
     { crearLabel(); }
 #line 1224 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 35 "sintactico.y" /* yacc.c:1646  */
+#line 39 "sintactico.y" /* yacc.c:1646  */
     { crearJ(); }
 #line 1230 "sintactico.tab.c" /* yacc.c:1646  */
     break;
@@ -1458,7 +1458,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 38 "sintactico.y" /* yacc.c:1906  */
+#line 42 "sintactico.y" /* yacc.c:1906  */
 
 
 
@@ -1483,13 +1483,16 @@ void crearTipoInmediato(){
 }
 
 void crearLabel(){
+    string::iterator end = readed.at(0).end();
+    end--;
+    readed.at(0).erase(end);
     Instruccion *inst = new Label(readed.at(0));
     instrucciones.push_back(inst);
     readed.clear();
 }
 
 void crearJ(){
-    Instruccion *inst = new JFalso(readed.at(0));
+    Instruccion *inst = new JFalso(readed.at(1));
     instrucciones.push_back(inst);
     readed.clear();
 }
