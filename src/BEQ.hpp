@@ -5,11 +5,11 @@
 using namespace std;
 #include "Instruccion.hpp" 
 
-class JFalso: public Instruccion{
+class BEQ: public Instruccion{
     private:
-       string nombreLabel;
+       size_t pos;
     public:
-        BEQ(string nombreLabel);
+        BEQ(size_t pos);
         void run(Estado &estado);
 };
 

@@ -1,15 +1,10 @@
-#include <string>
-#include <stdexcept>
-using namespace std;
-
 #include "BEQ.hpp"
+#include "Instruccion.hpp"
 
-BEQ::BEQ(string nombreLabel): Instruccion(NombreInstruccion::J){
-    this->nombreLabel = nombreLabel;
+BEQ::BEQ(size_t pos): Instruccion(NombreInstruccion::Beq){
+    this->pos = pos;
 }
 
-void JFalso::run(Estado &estado){
-    throw logic_error("Error, j falso no se puede ejecutar");
+void BEQ::run(Estado &estado){
+    estado.programCounter(this->pos);
 }
-
-
