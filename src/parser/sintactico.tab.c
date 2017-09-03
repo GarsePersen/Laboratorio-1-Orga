@@ -74,6 +74,8 @@
     #include "../Instruccion.hpp"
     #include "../Label.hpp"
     #include "../JFalso.hpp"
+    #include "../BeqFalso.hpp"
+    #include "../TipoR.hpp"
     using namespace std;
 	void yyerror(char *s);
 	extern int yylineno;
@@ -82,10 +84,12 @@
     void crearTipoInmediato();
     void crearLabel();
     void crearJ();
+    void crearBeq();
+    void crearTipoR();
     vector<Instruccion*> getInstrucciones();
      
 
-#line 89 "sintactico.tab.c" /* yacc.c:339  */
+#line 93 "sintactico.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -143,7 +147,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 147 "sintactico.tab.c" /* yacc.c:358  */
+#line 151 "sintactico.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -385,16 +389,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  7
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   10
+#define YYLAST   12
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  3
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  6
+#define YYNRULES  8
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  13
+#define YYNSTATES  15
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -441,7 +445,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    33,    33,    34,    37,    38,    39
+       0,    37,    37,    38,    41,    42,    43,    44,    45
 };
 #endif
 
@@ -464,10 +468,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -4
+#define YYPACT_NINF -7
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-4)))
+  (!!((Yystate) == (-7)))
 
 #define YYTABLE_NINF -1
 
@@ -478,8 +482,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -1,    -4,     1,    -3,    -4,    -2,    -4,    -4,     2,
-       3,     4,    -4
+      -3,     4,    -7,     2,    -3,    -7,    -6,    -7,    -7,     3,
+       5,     1,    -7,    -7,    -7
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -488,13 +492,13 @@ static const yytype_int8 yypact[] =
 static const yytype_uint8 yydefact[] =
 {
        3,     0,     5,     0,     3,     6,     0,     1,     2,     0,
-       0,     0,     4
+       0,     0,     7,     4,     8
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,     5,    -4
+      -7,     6,    -7
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -508,14 +512,14 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       1,     7,     5,     2,     6,     9,     0,    10,    12,     8,
-      11
+       1,     9,     7,     2,    12,    13,    14,     5,    10,     6,
+       8,     0,    11
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     0,     3,     6,     5,     7,    -1,     5,     4,     4,
-       7
+       3,     7,     0,     6,     3,     4,     5,     3,     5,     5,
+       4,    -1,     7
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -523,19 +527,19 @@ static const yytype_int8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,     3,     6,     9,    10,     3,     5,     0,     9,     7,
-       5,     7,     4
+       5,     7,     3,     4,     5
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     8,     9,     9,    10,    10,    10
+       0,     8,     9,     9,    10,    10,    10,    10,    10
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     0,     6,     1,     2
+       0,     2,     2,     0,     6,     1,     2,     6,     6
 };
 
 
@@ -1212,25 +1216,37 @@ yyreduce:
   switch (yyn)
     {
         case 4:
-#line 37 "sintactico.y" /* yacc.c:1646  */
+#line 41 "sintactico.y" /* yacc.c:1646  */
     { crearTipoInmediato(); }
-#line 1218 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1222 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 38 "sintactico.y" /* yacc.c:1646  */
+#line 42 "sintactico.y" /* yacc.c:1646  */
     { crearLabel(); }
-#line 1224 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1228 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 39 "sintactico.y" /* yacc.c:1646  */
+#line 43 "sintactico.y" /* yacc.c:1646  */
     { crearJ(); }
-#line 1230 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1234 "sintactico.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 7:
+#line 44 "sintactico.y" /* yacc.c:1646  */
+    { crearBeq(); }
+#line 1240 "sintactico.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 8:
+#line 45 "sintactico.y" /* yacc.c:1646  */
+    {crearTipoR(); }
+#line 1246 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1234 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1250 "sintactico.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1458,7 +1474,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 42 "sintactico.y" /* yacc.c:1906  */
+#line 48 "sintactico.y" /* yacc.c:1906  */
 
 
 
@@ -1476,8 +1492,20 @@ void yyerror(char *s) {
 }
 
 
+void crearBeq(){
+    Instruccion *inst = new BeqFalso(readed.at(3), readed.at(1), readed.at(2));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
 void crearTipoInmediato(){
     Instruccion *inst = new TipoInmediato(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
+void crearTipoR(){
+    Instruccion *inst = new TipoR(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
     instrucciones.push_back(inst);
     readed.clear();
 }

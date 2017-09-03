@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "Instruccion.hpp"
+#include "LineaControl.hpp"
 #include "Estado.hpp"
 #include "TipoInmediato.hpp"
 #include "parser/sintactico.tab.h"
@@ -28,10 +29,26 @@ int mymain(){
 
     vector<Instruccion*> programa = getInstrucciones();
 
-    cout << programa.size() << endl;
+    ////cout << programa.size() << endl;
        
     transformarLabels(programa); 
      
+    Estado estado;
+    LineaControl lineaControl;
+
+    try{
+        bool end_program = false;
+        while(!end_program){
+            //cout << estado.toString() << endl;
+            auto i = programa.at(estado.programCounter());
+            i->run(estado);
+	    cout << lineaControl.toString() << endl;
+        }
+    }catch(logic_error e){
+        cerr << "Error: " << e.what() << endl;
+        return -1;
+    }
+    return 0;
     for(auto i: programa){
         cout << i->toString() << endl;
     }
@@ -60,7 +77,7 @@ int mymain(){
     }*/
     
     
-    Estado estado;
+    //Estado estado;
 
     try{
         bool end_program = false;

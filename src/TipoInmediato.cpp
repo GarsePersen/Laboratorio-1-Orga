@@ -1,5 +1,6 @@
 #include "TipoInmediato.hpp"
 #include <stdexcept>
+#include <iostream>
 using namespace std;
 
 TipoInmediato::TipoInmediato(NombreInstruccion nombre, size_t r1, size_t r2, int valor): Instruccion(nombre){
@@ -14,7 +15,7 @@ TipoInmediato::TipoInmediato(string nombre, string r1, string r2, string valor):
     this->valor = stoi(valor);
 }
 
-void TipoInmediato::run(Estado &estado){
+void TipoInmediato::run(Estado &estado, LineaControl &lineaControl){
     /* Camino de datos */
     int valorR2 = estado.obtenerValor(this->r2);
     int result;
@@ -22,9 +23,13 @@ void TipoInmediato::run(Estado &estado){
     switch(this->nombre){
         case NombreInstruccion::Addi:
             /*Camino de datos del addi */
-            result = valorR2 + this->valor;
+            cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUSrc RegWrite"<< endl;
+            cout << "   0     0     0       0       0       00      0      1        0"<< endl;
+	    result = valorR2 + this->valor;
             break;
         case NombreInstruccion::Subi:
+            cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUVSrc RegWrite"<< endl;
+            cout << "   0     0     0       0       0       00      0      1        0"<< endl;
             result = valorR2 - this->valor;
             break;
         default:

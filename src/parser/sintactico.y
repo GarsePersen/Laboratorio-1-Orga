@@ -9,6 +9,8 @@
     #include "../Instruccion.hpp"
     #include "../Label.hpp"
     #include "../JFalso.hpp"
+    #include "../BeqFalso.hpp"
+    #include "../TipoR.hpp"
     using namespace std;
 	void yyerror(char *s);
 	extern int yylineno;
@@ -17,6 +19,8 @@
     void crearTipoInmediato();
     void crearLabel();
     void crearJ();
+    void crearBeq();
+    void crearTipoR();
     vector<Instruccion*> getInstrucciones();
      
 %}
@@ -37,6 +41,8 @@ mips: linea mips
 linea: IDENTIFICADOR REGISTRO ',' REGISTRO ',' NUMERO { crearTipoInmediato(); }
     | LABEL { crearLabel(); } 
     | IDENTIFICADOR IDENTIFICADOR { crearJ(); }
+    | IDENTIFICADOR REGISTRO ',' REGISTRO ',' IDENTIFICADOR { crearBeq(); }
+    | IDENTIFICADOR REGISTRO ',' REGISTRO ',' REGISTRO {crearTipoR(); }
     ;
 
 %%
@@ -56,8 +62,20 @@ void yyerror(char *s) {
 }
 
 
+void crearBeq(){
+    Instruccion *inst = new BeqFalso(readed.at(3), readed.at(1), readed.at(2));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
 void crearTipoInmediato(){
     Instruccion *inst = new TipoInmediato(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
+void crearTipoR(){
+    Instruccion *inst = new TipoR(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
     instrucciones.push_back(inst);
     readed.clear();
 }

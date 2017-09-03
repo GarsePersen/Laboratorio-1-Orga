@@ -8,8 +8,10 @@ using namespace std;
 class BeqFalso: public InstruccionFalsa{
     private:
         string nombreLabel;
+	size_t r1, r2;
     public:
-        BeqFalso(string nombreLabel);
+        BeqFalso(string nombreLabel, size_t r1, size_t r2);
+        BeqFalso(string nombreLabel, string r1, string r2);
         void run(Estado &estado);
         Instruccion *getReal(size_t pos);
         string getLabel();

@@ -13,6 +13,8 @@ enum class NombreInstruccion{
     Subi,
     J,
     Beq,
+    Mul,
+    Div,
     Label
 };
 
