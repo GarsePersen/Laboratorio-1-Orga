@@ -13,7 +13,7 @@ class TipoR: public Instruccion{
     public:
         TipoR(NombreInstruccion nombre, size_t r1, size_t r2, size_t r3);
         TipoR(string nombre, string r1, string r2, string r3);
-        void run(Estado &estado);
+        void run(Estado &estado, LineaControl &lineaControl);
 };
 
 #endif

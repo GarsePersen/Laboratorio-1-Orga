@@ -10,7 +10,7 @@ BEQ::BEQ(size_t pos, int r1, int r2): Instruccion(NombreInstruccion::Beq){
     this->r2 = r2;
 }
 
-void BEQ::run(Estado &estado){
+void BEQ::run(Estado &estado, LineaControl &lineaControl){
     int valorR1 = estado.obtenerValor(this->r1);
     int valorR2 = estado.obtenerValor(this->r2);
     int counter = estado.obtenerValor(32);

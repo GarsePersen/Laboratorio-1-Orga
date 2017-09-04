@@ -41,7 +41,7 @@ int mymain(){
         while(!end_program){
             //cout << estado.toString() << endl;
             auto i = programa.at(estado.programCounter());
-            i->run(estado);
+            i->run(estado, lineaControl);
 	    cout << lineaControl.toString() << endl;
         }
     }catch(logic_error e){
@@ -84,7 +84,7 @@ int mymain(){
         while(!end_program){
             //cout << estado.toString() << endl;
             auto i = programa.at(estado.programCounter());
-            i->run(estado);
+    //        i->run(estado);
         }
     }catch(logic_error e){
         cerr << "Error: " << e.what() << endl;

@@ -12,6 +12,7 @@ class LineaControl{
     public:
         LineaControl();
         string toString() const;
+        void modificarLinea(size_t numero, int valor);
 };
 
 

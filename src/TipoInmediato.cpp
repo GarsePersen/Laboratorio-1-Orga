@@ -23,13 +23,13 @@ void TipoInmediato::run(Estado &estado, LineaControl &lineaControl){
     switch(this->nombre){
         case NombreInstruccion::Addi:
             /*Camino de datos del addi */
-            cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUSrc RegWrite"<< endl;
-            cout << "   0     0     0       0       0       00      0      1        0"<< endl;
+            //cout << "   0     0     0       0       0       00      0      1        0"<< endl;
+	    lineaControl.modificarLinea(8, 1);
 	    result = valorR2 + this->valor;
             break;
         case NombreInstruccion::Subi:
-            cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUVSrc RegWrite"<< endl;
-            cout << "   0     0     0       0       0       00      0      1        0"<< endl;
+            //cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUVSrc RegWrite"<< endl;
+            //cout << "   0     0     0       0       0       00      0      1        0"<< endl;
             result = valorR2 - this->valor;
             break;
         default:

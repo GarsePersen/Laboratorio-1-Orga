@@ -10,7 +10,7 @@ class Label: public Instruccion{
        string nombre; 
     public:
         Label(string nombre);
-        void run(Estado &estado);
+        void run(Estado &estado, LineaControl &lineaControl);
         string getLabel() const;
 };
 

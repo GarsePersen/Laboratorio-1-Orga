@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
+#include "LineaControl.hpp"
 #include "Estado.hpp"
 
 enum class NombreInstruccion{
@@ -28,7 +29,7 @@ class Instruccion{
         Instruccion(NombreInstruccion nombre);
         Instruccion(string nombre);
 
-        virtual void run(Estado &estado) = 0;
+        virtual void run(Estado &estado, LineaControl &lineaControl) = 0;
 
         /*Retorna una reresentacion en string de la instruccion*/
         string toString() const;

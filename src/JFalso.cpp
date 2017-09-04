@@ -9,7 +9,7 @@ JFalso::JFalso(string nombreLabel): InstruccionFalsa(NombreInstruccion::J){
     this->nombreLabel = nombreLabel;
 }
 
-void JFalso::run(Estado &estado){
+void JFalso::run(Estado &estado, LineaControl &lineaControl){
     throw logic_error("Error, j falso no se puede ejecutar");
 }
 

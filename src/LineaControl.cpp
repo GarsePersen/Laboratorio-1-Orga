@@ -8,14 +8,18 @@ LineaControl::LineaControl(){
     }
 }
 
-
 string LineaControl::toString() const{
     stringstream ss;
     
+    ss << "  RegDest  Jump  Branch MemRead MemToReg ALUOp MemWrite ALUSrc RegWrite\n"<< endl;
     for(size_t i = 0; i < NUMERO_LINEAS_CONTROL; i++){
-        ss << i << "\t" << this->registros[i] << endl;
-    }
+	if(i==6){
+            ss << this->registros[i] ;
+	}else{
+            ss << "      " << this->registros[i] ;
 
+	}
+    }
     return ss.str();
 }
 

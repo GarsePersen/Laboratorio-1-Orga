@@ -17,7 +17,7 @@ BeqFalso::BeqFalso(string nombreLabel, string r1, string r2): InstruccionFalsa(N
     this->r2 = this->storeg(r2);
     this->nombreLabel = nombreLabel;
 }
-void BeqFalso::run(Estado &estado){
+void BeqFalso::run(Estado &estado, LineaControl &lineaControl){
     throw logic_error("Error, Beq falso no se puede ejecutar");
 }
 

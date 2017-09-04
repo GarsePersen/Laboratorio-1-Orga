@@ -8,7 +8,7 @@ Label::Label(string nombre): Instruccion(NombreInstruccion::Label){
     this->nombre = nombre;
 }
 
-void Label::run(Estado &estado){
+void Label::run(Estado &estado, LineaControl &lineaControl){
     throw logic_error("Error, label no se puede ejecutar");
 
 }

@@ -10,7 +10,7 @@ class InstruccionFalsa: public Instruccion{
     public:
         InstruccionFalsa(string nombre);
         InstruccionFalsa(NombreInstruccion nombre);
-        virtual void run(Estado &estado) = 0;
+        virtual void run(Estado &estado, LineaControl &lineaControl) = 0;
         virtual string getLabel() = 0;
         virtual Instruccion *getReal(size_t pos) = 0;
 };
