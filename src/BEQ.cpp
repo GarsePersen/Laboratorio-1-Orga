@@ -21,6 +21,16 @@ void BEQ::run(Estado &estado, LineaControl &lineaControl){
     cout << "\n" << endl;
     if(valorR1 == valorR2){
     	estado.programCounter(this->pos);
+        lineaControl.modificarLinea(0, -1);
+        lineaControl.modificarLinea(1, 0);
+        lineaControl.modificarLinea(2, 1);
+        lineaControl.modificarLinea(3, 0);
+        lineaControl.modificarLinea(4, -1);
+        lineaControl.modificarLinea(5, 0);
+        lineaControl.modificarLinea(6, 1);
+        lineaControl.modificarLinea(7, 0);
+        lineaControl.modificarLinea(8, 0);
+        lineaControl.modificarLinea(9, 0);
     }else{
         estado.programCounter(counter+1);
     }

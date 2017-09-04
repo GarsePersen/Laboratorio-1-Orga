@@ -14,7 +14,7 @@ string LineaControl::toString() const{
     ss << "  RegDest  Jump  Branch MemRead MemToReg ALUOp MemWrite ALUSrc RegWrite\n"<< endl;
     for(size_t i = 0; i < NUMERO_LINEAS_CONTROL; i++){
 	if(i==6){
-            ss << this->registros[i] ;
+            ss <<" "<< this->registros[i] ;
 	}else{
             ss << "      " << this->registros[i] ;
 

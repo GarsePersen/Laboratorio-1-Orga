@@ -22,20 +22,24 @@ void TipoInmediato::run(Estado &estado, LineaControl &lineaControl){
     
     switch(this->nombre){
         case NombreInstruccion::Addi:
-            /*Camino de datos del addi */
-            //cout << "   0     0     0       0       0       00      0      1        0"<< endl;
-	    lineaControl.modificarLinea(8, 1);
-	    result = valorR2 + this->valor;
+	        result = valorR2 + this->valor;
             break;
         case NombreInstruccion::Subi:
-            //cout << "RegDest Jump Branch MemRead MemToReg ALUOp MemWrite ALUVSrc RegWrite"<< endl;
-            //cout << "   0     0     0       0       0       00      0      1        0"<< endl;
             result = valorR2 - this->valor;
             break;
         default:
             throw logic_error("La instruccion no corresponde a un TipoInmediato");
     }
-
+    lineaControl.modificarLinea(0, 0); 
+    lineaControl.modificarLinea(1, 0);
+    lineaControl.modificarLinea(2, 0);
+    lineaControl.modificarLinea(3, 0);
+    lineaControl.modificarLinea(4, 0);
+    lineaControl.modificarLinea(5, 0);
+    lineaControl.modificarLinea(6, 0);
+    lineaControl.modificarLinea(7, 0);
+    lineaControl.modificarLinea(8, 1);
+    lineaControl.modificarLinea(9, 1);
     estado.programCounter(estado.programCounter() + 1);
     estado.modificarRegistro(this->r1, result);
 }
