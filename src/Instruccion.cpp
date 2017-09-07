@@ -39,6 +39,10 @@ Instruccion::Instruccion(string nombre){
         this->nombre = NombreInstruccion::Mul;
     }else if(nombre == "div"){
         this->nombre = NombreInstruccion::Div;
+    }else if(nombre == "sw"){
+        this->nombre = NombreInstruccion::Sw;
+    }else if(nombre == "lw"){
+        this->nombre = NombreInstruccion::Lw;
     }else{
         throw logic_error("Falta un caso en el constructor de string de Instruccion");
     }
@@ -56,22 +60,42 @@ string Instruccion::toString() const{
             return "Subi";
         case NombreInstruccion::Label:
             return "Label";
-	case NombreInstruccion::Beq:
-	    return "Beq";
-	case NombreInstruccion::J:
+        case NombreInstruccion::Beq:
+            return "Beq";
+        case NombreInstruccion::J:
             return "J";
-	case NombreInstruccion::Mul:
-	    return "Mul";
-	case NombreInstruccion::Div:
-	    return "Div";
+        case NombreInstruccion::Mul:
+            return "Mul";
+        case NombreInstruccion::Div:
+            return "Div";
+        case NombreInstruccion::Lw:
+            return "Lw";
+        case NombreInstruccion::Sw:
+            return "Sw";
         default:
-	    return "Falta un caso en __LINE__";
+            return "Falta un caso en __LINE__";
     }
 }
 
 
 size_t Instruccion::storeg(string str){
-    if(str == "$t0"){
+    if(str == "$zero"){
+        return 0;
+    }else if(str == "$at"){
+        return 1;
+    }else if(str == "$v0"){
+        return 2;
+    }else if(str == "$v1"){
+        return 3;
+    }else if(str == "$a0"){
+        return 4;    
+    }else if(str == "$a1"){
+        return 5;
+    }else if(str == "$a2"){
+        return 6;
+    }else if(str == "$a3"){
+        return 7;
+    }else if(str == "$t0"){
         return 8;
     }else if(str == "$t1"){
         return 9;
@@ -83,6 +107,42 @@ size_t Instruccion::storeg(string str){
         return 12;
     }else if(str == "$t5"){
         return 13;
+    }else if(str == "$t6"){
+        return 14;
+    }else if(str == "$t7"){
+        return 15; 
+    }else if(str == "$s0"){
+        return 16;
+    }else if(str == "$s1"){
+        return 17;
+    }else if(str == "$s2"){
+        return 18;
+    }else if(str == "$s3"){
+        return 19;
+    }else if(str == "$s4"){
+        return 20;
+    }else if(str == "$s5"){
+        return 21;
+    }else if(str == "$s6"){
+        return 22;
+    }else if(str == "$s7"){
+        return 23;
+    }else if(str == "$t8"){
+        return 24;
+    }else if(str == "$t9"){
+        return 25;
+    }else if(str == "$k0"){
+        return 26;
+    }else if(str == "$k1"){
+        return 27;
+    }else if(str == "$gp"){
+        return 28;
+    }else if(str == "$sp"){
+        return 29;
+    }else if(str == "$fp"){
+        return 30;
+    }else if(str == "$ra"){
+        return 31;
     }else{
         throw logic_error("Falta un caso en storeg ");
     }

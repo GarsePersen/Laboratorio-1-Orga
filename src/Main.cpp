@@ -8,6 +8,7 @@ using namespace std;
 #include "Estado.hpp"
 #include "TipoInmediato.hpp"
 #include "parser/sintactico.tab.h"
+#include "Archivo.hpp"
 
 extern void parse(const string &file);
 extern vector<Instruccion*> getInstrucciones();
@@ -26,9 +27,9 @@ int main(int argc, char **argv){
 
 int mymain(){
     parse("prueba.asm");
-
     vector<Instruccion*> programa = getInstrucciones();
-
+    Archivo archivo;
+    vector<int> lineaControlEntrada = archivo.archivoEntrada("hola.txt");
     ////cout << programa.size() << endl;
        
     transformarLabels(programa); 
@@ -42,7 +43,8 @@ int mymain(){
             //cout << estado.toString() << endl;
             auto i = programa.at(estado.programCounter());
             i->run(estado, lineaControl);
-	    cout << lineaControl.toString() << endl;
+	        cout << lineaControl.toString() << endl;
+            
         }
     }catch(logic_error e){
         cerr << "Error: " << e.what() << endl;

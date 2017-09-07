@@ -16,6 +16,8 @@ enum class NombreInstruccion{
     Beq,
     Mul,
     Div,
+    Lw,
+    Sw,
     Label
 };
 

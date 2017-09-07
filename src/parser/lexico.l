@@ -15,7 +15,7 @@ void debug(const char *);
 
 label [a-zA-Z][a-zA-Z1-9]*:
 identificador [a-zA-Z][a-zA-Z1-9]* 
-registro $[a-zA-Z][a-zA-Z1-9]
+registro $[a-zA-Z][a-zA-Z1-9]*
 numero (0x|0X)[0-9a-fA-F]+|[0-9]+|0[0-9]+
 
 %%

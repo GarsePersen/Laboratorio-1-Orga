@@ -1,33 +1,33 @@
-#include "TipoInmediato.hpp"
+#include "SwLw.hpp"
 #include <stdexcept>
 #include <iostream>
 using namespace std;
 
-TipoInmediato::TipoInmediato(NombreInstruccion nombre, size_t r1, size_t r2, int valor): Instruccion(nombre){
+SwLw::SwLw(NombreInstruccion nombre, size_t r1, int offset, size_t r2): Instruccion(nombre){
     this->r1 = r1;
     this->r2 = r2;
-    this->valor = valor;
+    this->offset = offset;
 }
 
-TipoInmediato::TipoInmediato(string nombre, string r1, string r2, string valor): Instruccion(nombre){
+SwLw::SwLw(string nombre, string r1, string offset, string r2): Instruccion(nombre){
     this->r1 = this->storeg(r1);
     this->r2 = this->storeg(r2);
-    this->valor = stoi(valor);
+    this->offset = stoi(offset);
 }
 
-void TipoInmediato::run(Estado &estado, LineaControl &lineaControl){
-    int valorR2 = estado.obtenerValor(this->r2);
+void SwLw::run(Estado &estado, LineaControl &lineaControl){
     int result;
-    
     switch(this->nombre){
-        case NombreInstruccion::Addi:
-	        result = valorR2 + this->valor;
+        case NombreInstruccion::Lw:
+	        result = estado.obtenerValor(this->r2);
+            estado.modificarRegistro(this->r1, result);
             break;
-        case NombreInstruccion::Subi:
-            result = valorR2 - this->valor;
+        case NombreInstruccion::Sw:
+            result = estado.obtenerValor(this->r1);
+            estado.modificarRegistro(this->r2, result);
             break;
         default:
-            throw logic_error("La instruccion no corresponde a un TipoInmediato");
+            throw logic_error("La instruccion no corresponde a un Save/Load word");
     }
     lineaControl.modificarLinea(0, 0); 
     lineaControl.modificarLinea(1, 0);
@@ -40,6 +40,4 @@ void TipoInmediato::run(Estado &estado, LineaControl &lineaControl){
     lineaControl.modificarLinea(8, 1);
     lineaControl.modificarLinea(9, 1);
     estado.programCounter(estado.programCounter() + 1);
-    estado.modificarRegistro(this->r1, result);
 }
-

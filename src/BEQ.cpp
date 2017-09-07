@@ -14,11 +14,6 @@ void BEQ::run(Estado &estado, LineaControl &lineaControl){
     int valorR1 = estado.obtenerValor(this->r1);
     int valorR2 = estado.obtenerValor(this->r2);
     int counter = estado.obtenerValor(32);
-    cout << "\n" << endl;
-    cout << valorR1 << endl;
-    cout << valorR2 << endl;
-    cout << counter << endl;
-    cout << "\n" << endl;
     if(valorR1 == valorR2){
     	estado.programCounter(this->pos);
         lineaControl.modificarLinea(0, -1);

@@ -11,6 +11,7 @@
     #include "../JFalso.hpp"
     #include "../BeqFalso.hpp"
     #include "../TipoR.hpp"
+    #include "../SwLw.hpp"
     using namespace std;
 	void yyerror(char *s);
 	extern int yylineno;
@@ -21,6 +22,7 @@
     void crearJ();
     void crearBeq();
     void crearTipoR();
+    void crearSwLw();
     vector<Instruccion*> getInstrucciones();
      
 %}
@@ -28,7 +30,6 @@
 
 
 %token IDENTIFICADOR
-
 %token NUMERO
 %token REGISTRO
 %token LABEL
@@ -43,7 +44,9 @@ linea: IDENTIFICADOR REGISTRO ',' REGISTRO ',' NUMERO { crearTipoInmediato(); }
     | IDENTIFICADOR IDENTIFICADOR { crearJ(); }
     | IDENTIFICADOR REGISTRO ',' REGISTRO ',' IDENTIFICADOR { crearBeq(); }
     | IDENTIFICADOR REGISTRO ',' REGISTRO ',' REGISTRO {crearTipoR(); }
+    | IDENTIFICADOR REGISTRO ',' NUMERO '(' REGISTRO ')' { crearSwLw(); }
     ;
+
 
 %%
 
@@ -91,6 +94,12 @@ void crearLabel(){
 
 void crearJ(){
     Instruccion *inst = new JFalso(readed.at(1));
+    instrucciones.push_back(inst);
+    readed.clear();
+}
+
+void crearSwLw(){
+    Instruccion *inst = new SwLw(readed.at(0), readed.at(1), readed.at(2), readed.at(3));
     instrucciones.push_back(inst);
     readed.clear();
 }
